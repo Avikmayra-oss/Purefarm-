@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PureFarm | Agricultural SaaS Platform</title>
+    <meta name="description" content="PureFarm connects farmers with agricultural services, equipment rentals, and farm produce marketplace">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4CAF50",
+                        secondary: "#2E7D32",
+                        accent: "#8BC34A",
+                        dark: "#1B5E20",
+                        light: "#C8E6C9"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-3">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center" onclick="event.preventDefault(); navigateTo('home')">
+                        <span class="text-2xl font-bold text-primary">Pure<span class="text-secondary">Farm</span></span>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="hidden md:flex flex-1 mx-8">
+                    <div class="relative w-full max-w-xl">
+                        <input 
+                            type="text" 
+                            placeholder="Search for services, equipment, or produce..." 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        >
+                        <select class="border-t border-b border-gray-300 px-2 py-2 bg-gray-100 text-gray-700 focus:outline-none">
+                            <option>All Categories</option>
+                            <option>Equipment</option>
+                            <option>Produce</option>
+                            <option>Services</option>
+                        </select>
+                        <button class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary" onclick="event.preventDefault(); navigateTo('sell')">
+                        <i class="fas fa-plus-circle mr-1"></i> Sell
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-primary" onclick="event.preventDefault(); navigateTo('login')">
+                        <i class="fas fa-user mr-1"></i> Login
+                    </a>
+                    <a href="#" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-lg" onclick="event.preventDefault(); navigateTo('register')">
+                        Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Search (hidden on desktop) -->
+    <div class="md:hidden bg-white py-2 px-4 shadow-sm">
+        <div class="relative">
+            <input 
+                type="text" 
+                placeholder="Search..." 
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+            <button class="absolute right-3 top-2 text-gray-500">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-8 mb-8">
+            <div class="max-w-2xl">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Your Agricultural Marketplace</h1>
+                <p class="text-lg mb-6">Connect with farmers, rent equipment, buy produce, and grow your business with PureFarm SaaS solutions.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#" class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-lg font-medium" onclick="event.preventDefault(); navigateTo('register')">
+                        Get Started
+                    </a>
+                    <a href="#" class="border border-white text-white hover:bg-white hover:text-primary px-6 py-3 rounded-lg font-medium" onclick="event.preventDefault(); navigateTo('learn-more')">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Browse Categories</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-equipment')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-tractor text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Equipment</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-produce')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-apple-alt text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Produce</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-services')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-hands-helping text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Services</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-seeds')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-seedling text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Seeds</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-livestock')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-paw text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Livestock</span>
+                </a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center" onclick="event.preventDefault(); navigateTo('category-fertilizers')">
+                    <div class="bg-light rounded-full p-4 mb-2 mx-auto w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-flask text-2xl text-primary"></i>
+                    </div>
+                    <span class="font-medium">Fertilizers</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Listings -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Featured Listings</h2>
+                <a href="#" class="text-primary hover:text-secondary font-medium" onclick="event.preventDefault(); navigateTo('all-listings')">View All</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Listing Item 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://picsum.photos/400/300?random=101" alt="John Deere Tractor" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-lg mb-1">John Deere Tractor</h3>
+                            <span class="bg-light text-primary text-xs px-2 py-1 rounded">Equipment</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">2019 Model, 500hrs, Excellent Condition</p>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-gray-500 text-sm ml-1">(12)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">$25,000</span>
+                            <span class="text-gray-500 text-sm">Nairobi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listing Item 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://picsum.photos/400/300?random=102" alt="Organic Tomatoes" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-lg mb-1">Organic Tomatoes</h3>
+                            <span class="bg-light text-primary text-xs px-2 py-1 rounded">Produce</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Fresh from the farm, chemical-free</p>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="text-gray-500 text-sm ml-1">(8)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">$1.20/kg</span>
+                            <span class="text-gray-500 text-sm">Nakuru</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listing Item 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://picsum.photos/400/300?random=103" alt="Farm Irrigation Service" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-lg mb-1">Farm Irrigation Service</h3>
+                            <span class="bg-light text-primary text-xs px-2 py-1 rounded">Services</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Professional irrigation system installation</p>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="text-gray-500 text-sm ml-1">(24)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">$500+</span>
+                            <span class="text-gray-500 text-sm">Countrywide</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listing Item 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img src="https://picsum.photos/400/300?random=104" alt="Dairy Cows" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-bold text-lg mb-1">Dairy Cows</h3>
+                            <span class="bg-light text-primary text-xs px-2 py-1 rounded">Livestock</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-2">Friesian cows, high milk production</p>
+                        <div class="flex items-center text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="text-gray-500 text-sm ml-1">(15)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary">$1,200 each</span>
+                            <span class="text-gray-500 text-sm">Eldoret</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="bg-gray-100 rounded-xl p-8 mb-12">
+            <h2 class="text-2xl font-bold mb-8 text-center text-gray-800">How PureFarm Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-white rounded-full p-4 mb-4 mx-auto w-20 h-20 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-user-plus text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">1. Create Account</h3>
+                    <p class="text-gray-600">Register as a buyer or seller in minutes</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-full p-4 mb-4 mx-auto w-20 h-20 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-list-alt text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">2. List or Browse</h3>
+                    <p class="text-gray-600">Post your items or find what you need</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-white rounded-full p-4 mb-4 mx-auto w-20 h-20 flex items-center justify-center shadow-sm">
+                        <i class="fas fa-handshake text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">3. Connect & Transact</h3>
+                    <p class="text-gray-600">Message directly and complete your transaction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-8 text-center text-gray-800">What Farmers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/100?random=201" alt="James Kariuki" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+                        <div>
+                            <h4 class="font-bold">James Kariuki</h4>
+                            <p class="text-gray-500 text-sm">Maize Farmer, Nakuru</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"PureFarm helped me find affordable irrigation equipment that doubled my yields. The platform is easy to use and connects me with reliable sellers."</p>
+                    <div class="flex mt-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/100?random=202" alt="Susan Wanjiku" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+                        <div>
+                            <h4 class="font-bold">Susan Wanjiku</h4>
+                            <p class="text-gray-500 text-sm">Dairy Farmer, Kiambu</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"I sell my organic vegetables on PureFarm and get better prices than middlemen offer. The platform has expanded my customer base significantly."</p>
+                    <div class="flex mt-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/100?random=203" alt="David Omondi" class="w-12 h-12 rounded-full mr-4" loading="lazy">
+                        <div>
+                            <h4 class="font-bold">David Omondi</h4>
+                            <p class="text-gray-500 text-sm">Equipment Supplier, Nairobi</h4>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"As an equipment supplier, PureFarm gives me access to farmers across the country. The SaaS tools help me manage my inventory and sales efficiently."</p>
+                    <div class="flex mt-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">PureFarm</h3>
+                    <p class="text-gray-300 mb-4">Connecting farmers with agricultural services, equipment, and produce marketplace.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('twitter')">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('instagram')">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('linkedin')">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('home')">Home</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('about')">About Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('listings')">All Listings</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('pricing')">Pricing</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('contact')">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('category-equipment')">Equipment</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('category-produce')">Produce</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('category-services')">Services</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('category-seeds')">Seeds</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white" onclick="event.preventDefault(); navigateTo('category-livestock')">Livestock</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Subscribe to get updates on new listings and features.</p>
+                    <form class="flex">
+                        <input 
+                            type="email" 
+                            placeholder="Your email" 
+                            class="px-4 py-2 rounded-l-lg focus:outline-none text-gray-800 w-full"
+                            required
+                        >
+                        <button type="submit" class="bg-primary hover:bg-secondary px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 PureFarm. All rights reserved. | <a href="#" class="hover:text-white" onclick="event.preventDefault(); navigateTo('terms')">Terms of Service</a> | <a href="#" class="hover:text-white" onclick="event.preventDefault(); navigateTo('privacy')">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Define data at the beginning
+        const categories = [
+            { "id": 1, "name": "Equipment", "icon": "fa-tractor" },
+            { "id": 2, "name": "Produce", "icon": "fa-apple-alt" },
+            { "id": 3, "name": "Services", "icon": "fa-hands-helping" },
+            { "id": 4, "name": "Seeds", "icon": "fa-seedling" },
+            { "id": 5, "name": "Livestock", "icon": "fa-paw" },
+            { "id": 6, "name": "Fertilizers", "icon": "fa-flask" }
+        ];
+
+        const featuredListings = [
+            { 
+                "id": 1, 
+                "title": "John Deere Tractor", 
+                "description": "2019 Model, 500hrs, Excellent Condition", 
+                "category": "Equipment", 
+                "price": "$25,000", 
+                "location": "Nairobi", 
+                "rating": 4.5, 
+                "reviews": 12,
+                "image": "https://picsum.photos/400/300?random=101"
+            },
+            { 
+                "id": 2, 
+                "title": "Organic Tomatoes", 
+                "description": "Fresh from the farm, chemical-free", 
+                "category": "Produce", 
+                "price": "$1.20/kg", 
+                "location": "Nakuru", 
+                "rating": 4, 
+                "reviews": 8,
+                "image": "https://picsum.photos/400/300?random=102"
+            },
+            { 
+                "id": 3, 
+                "title": "Farm Irrigation Service", 
+                "description": "Professional irrigation system installation", 
+                "category": "Services", 
+                "price": "$500+", 
+                "location": "Countrywide", 
+                "rating": 5, 
+                "reviews": 24,
+                "image": "https://picsum.photos/400/300?random=103"
+            },
+            { 
+                "id": 4, 
+                "title": "Dairy Cows", 
+                "description": "Friesian cows, high milk production", 
+                "category": "Livestock", 
+                "price": "$1,200 each", 
+                "location": "Eldoret", 
+                "rating": 4.5, 
+                "reviews": 15,
+                "image": "https://picsum.photos/400/300?random=104"
+            }
+        ];
+
+        const testimonials = [
+            {
+                "id": 1,
+                "name": "James Kariuki",
+                "role": "Maize Farmer, Nakuru",
+                "content": "\"PureFarm helped me find affordable irrigation equipment that doubled my yields. The platform is easy to use and connects me with reliable sellers.\"",
+                "rating": 5,
+                "image": "https://picsum.photos/100?random=201"
+            },
+            {
+                "id": 2,
+                "name": "Susan Wanjiku",
+                "role": "Dairy Farmer, Kiambu",
+                "content": "\"I sell my organic vegetables on PureFarm and get better prices than middlemen offer. The platform has expanded my customer base significantly.\"",
+                "rating": 4.5,
+                "image": "https://picsum.photos/100?random=202"
+            },
+            {
+                "id": 3,
+                "name": "David Omondi",
+                "role": "Equipment Supplier, Nairobi",
+                "content": "\"As an equipment supplier, PureFarm gives me access to farmers across the country. The SaaS tools help me manage my inventory and sales efficiently.\"",
+                "rating": 5,
+                "image": "https://picsum.photos/100?random=203"
+            }
+        ];
+
+        // Navigation function
+        function navigateTo(page) {
+            // In a real implementation, this would handle routing
+            console.log(`Navigating to ${page}`);
+            // For demo purposes, we'll just scroll to sections
+            if (page === 'home') {
+                window.scrollTo(0, 0);
+            } else if (page === 'all-listings') {
+                const element = document.querySelector('section:nth-of-type(2)');
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Initialize any event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Any initialization code would go here
+        });
+    </script>
+</body>
+</html>
